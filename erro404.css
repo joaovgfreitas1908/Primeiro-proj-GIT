@@ -1,0 +1,52 @@
+body{
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(135deg,#692302 0%, #cd853f 100%) ;
+
+}
+
+.container-erro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    color: white;
+}
+
+.codigo-erro {
+    font-size: 100px;
+    margin: 0;
+}
+
+.container-erro h2{
+    font-size: 32px;
+    margin: 10px 0;
+}
+
+.container-erro p {
+    font-size: 18px;
+    margin: 0;
+}
+    
+.imagem-erro {
+    width: 180px;
+    height: auto;
+    margin: 20px 0;
+    mix-blend-mode: screen;
+}
+
+.texto-erro{
+    transform: translateY(-55px);
+}
+
+    .btn-voltar{
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 24px;
+        background-color: #5a3825;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+    }
