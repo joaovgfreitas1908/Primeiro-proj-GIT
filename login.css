@@ -92,3 +92,16 @@ font-size: 16px;
 .links_uteis a {
     color: black;
 }
+
+.campo-senha{
+    position: relative;
+}
+
+#mostrar-senha{
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+}
