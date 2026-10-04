@@ -3,8 +3,8 @@ body {
     padding: 20;
     box-sizing: border-box;
     font-family:Arial, Helvetica, sans-serif ;
-    background: linear-gradient(135deg,#692302 0%, #cd853f 100%) ;
-
+    background-color: #faf6f0;
+    color: #2c1e16;
     display : flex;
     justify-content: center;
     align-items: center;
@@ -12,10 +12,15 @@ body {
 
 }
 
+p {
+    color: #6e5a4f;
+}
+
 .login-container {
-    background-color: #f3f2f2;
+    background-color: #ffffff;
     padding: 40px;
     border-radius: 35px;
+    border: 1px solid #e6d8cb;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     width: 100%;
     max-width: 400px;
@@ -73,10 +78,14 @@ margin-top: 10PX;
 border: none;
 border-radius: 6px;
 cursor: pointer;
-background-color: black;
-color: white;
+background-color: #c87d55;
+color: #ffffff;
 display: block;
 font-size: 16px;
+}
+
+.btn-entrar:hover{
+    background-color: #a65d27;
 }
 
 .links_uteis {
