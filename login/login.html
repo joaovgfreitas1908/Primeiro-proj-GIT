@@ -11,11 +11,12 @@
     <div class="login-container"> 
         <h2>Bem-vindo ao Café & Grãos! ☕</h2>
         <p>Acesse sua conta para continuar.</p>
-        <form action="#" method="POST">
+        <form id="form-login" action="#" method="POST" novalidate>
             <div class="form-group"> 
                 <label for="Login">Usuário</label>
                 <input type="text" id = "login" name="Login"
                 placeholder="Digite seu usuário" required>
+                <small id="erro-usuario" class="mensagem-erro"></small>
             </div>
             <div class="form-group">
                 <label for="senha">Senha</label>
@@ -24,6 +25,7 @@
                 id="senha" name="senha"
                 placeholder="Digite sua senha" required
                 >
+                <small id="erro-senha" class="mensagem-erro"></small>
                 <button type="button" id="mostrar-senha"
                 >⌣</button>
             </div>

@@ -3,7 +3,7 @@ body {
     padding: 20;
     box-sizing: border-box;
     font-family:Arial, Helvetica, sans-serif ;
-    background-color: #faf6f0;
+    background-color: #faf2e6;
     color: #2c1e16;
     display : flex;
     justify-content: center;
@@ -39,9 +39,10 @@ p {
 .form-group input {
     width:100%;
     padding: 10px;
-    border:1px solid #d6d0c8;
+    border:1px solid #e2dbd4;
     border-radius: 6px;
     box-sizing: border-box;
+    background-color: #fafaf8;
 }
 
 .opcoes-login {
@@ -113,4 +114,20 @@ font-size: 16px;
     transform: translateY(-50%);
     border: none;
     background: transparent;
+}
+
+.mensagem-erro{
+    color: #c0392b;
+    font-size: 13px;
+    margin-top: 4px;
+    display: block;
+}
+
+.form-group input.input-erro{
+   border: 1px solid #c0392b;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #2c1e16;
 }
