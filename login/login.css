@@ -1,21 +1,24 @@
+
+/* Define a fonte, as cores e centraliza o conteúdo da página */
 body {
     margin: 30;
     padding: 20;
     box-sizing: border-box;
-    font-family:Arial, Helvetica, sans-serif ;
+    font-family: 'Inter', sans-serif;
     background-color: #faf2e6;
     color: #2c1e16;
-    display : flex;
+    display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-
 }
 
+/* Define a cor dos parágrafos */
 p {
     color: #6e5a4f;
 }
 
+/* Personaliza o container principal do formulário de login */
 .login-container {
     background-color: #ffffff;
     padding: 40px;
@@ -26,33 +29,37 @@ p {
     max-width: 400px;
 }
 
+/* Define o espaçamento entre os campos do formulário */
 .form-group {
     margin-bottom: 18px;
 }
 
-.form-group label{
+/* Personaliza os rótulos dos campos de usuário e senha */
+.form-group label {
     display: block;
-    margin: bottom 6px;
+    margin-bottom: 6px;
     font-weight: bold;
 }
 
+/* Define o tamanho, as cores e as bordas dos campos de entrada */
 .form-group input {
-    width:100%;
+    width: 100%;
     padding: 10px;
-    border:1px solid #e2dbd4;
+    border: 1px solid #e2dbd4;
     border-radius: 6px;
     box-sizing: border-box;
     background-color: #fafaf8;
 }
 
+/* Organiza a opção de lembrar e o link de recuperação de senha */
 .opcoes-login {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 15px;
+}
 
-    }
-
+/* Alinha o checkbox com o texto Lembrar de mim */
 .opcoes-login label {
     display: flex;
     align-items: center;
@@ -64,50 +71,57 @@ p {
     font-weight: normal;
 }
 
-.opcoes-login input [type="checkbox"]
-{
+/* Define o tamanho e o posicionamento do checkbox */
+.opcoes-login input[type="checkbox"] {
     width: 16px;
     height: 16px;
     margin: 0;
     flex: 0 0 auto;
 }
 
-.btn-entrar{
-width: 100%;
-padding: 12px;
-margin-top: 10PX;
-border: none;
-border-radius: 6px;
-cursor: pointer;
-background-color: #c87d55;
-color: #ffffff;
-display: block;
-font-size: 16px;
+/* Personaliza o botão Entrar */
+.btn-entrar {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10PX;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #c87d55;
+    color: #ffffff;
+    display: block;
+    font-size: 16px;
 }
 
-.btn-entrar:hover{
+/* Altera a cor do botão Entrar ao passar o mouse */
+.btn-entrar:hover {
     background-color: #a65d27;
 }
 
+/* Centraliza o link de criação de conta */
 .links_uteis {
     text-align: center;
     margin-top: 20px;
 }
 
+/* Define o tamanho da fonte do link de recuperação de senha */
 .opcoes-login a {
     font-size: 16px;
 }
 
+/* Define a cor dos links do formulário */
 .opcoes-login a,
 .links_uteis a {
     color: black;
 }
 
-.campo-senha{
+/* Permite posicionar o botão de mostrar senha dentro do campo */
+.campo-senha {
     position: relative;
 }
 
-#mostrar-senha{
+/* Posiciona o botão de mostrar ou ocultar senha */
+#mostrar-senha {
     position: absolute;
     right: 12px;
     top: 50%;
@@ -116,18 +130,87 @@ font-size: 16px;
     background: transparent;
 }
 
-.mensagem-erro{
+/* Personaliza as mensagens de erro da validação */
+.mensagem-erro {
     color: #c0392b;
     font-size: 13px;
     margin-top: 4px;
     display: block;
 }
 
-.form-group input.input-erro{
-   border: 1px solid #c0392b;
+/* Destaca com borda vermelha os campos que apresentam erro */
+.form-group input.input-erro {
+    border: 1px solid #c0392b;
 }
 
+/* Destaca a borda do campo quando ele recebe foco */
 .form-group input:focus {
     outline: none;
     border-color: #2c1e16;
+}
+
+/* Mantém os botões de acessibilidade fixos no canto superior direito */
+.barra-acessibilidade {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+}
+
+/* Personaliza os botões de aumentar fonte, diminuir fonte e alternar tema */
+.barra-acessibilidade button {
+    background-color: #A65D37;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 22px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Altera a cor dos botões de acessibilidade ao passar o mouse */
+.barra-acessibilidade button:hover {
+    background-color: #a65d37;
+}
+
+/* Destaca os botões de acessibilidade quando selecionados pelo teclado */
+.barra-acessibilidade button:focus-visible {
+    outline: 3px solid #2c1e16;
+    outline-offset: 3px;
+}
+
+/* Define as cores de fundo e texto quando o modo escuro está ativado */
+body.modo-escuro {
+    background-color: #1E1713;
+    color: #F5EDE5;
+}
+
+/* Altera as cores do container de login no modo escuro */
+.modo-escuro .login-container {
+    background-color: #30251F;
+    color: #F5EDE5;
+}
+
+/* Define as cores dos títulos, textos, rótulos e links no modo escuro */
+.modo-escuro h1,
+.modo-escuro h2,
+.modo-escuro label,
+.modo-escuro p,
+.modo-escuro a {
+    color: #F5EDE5;
+}
+
+/* Personaliza os campos de entrada no modo escuro */
+.modo-escuro input {
+    background-color: #44362E;
+    color: #FFFFFF;
+    border-color: #A68A78;
+}
+
+/* Define as cores dos botões de acessibilidade no modo escuro */
+.modo-escuro .barra-acessibilidade button {
+    background-color: #6E4B37;
+    color: #FFFFFF;
 }

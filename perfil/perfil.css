@@ -1,3 +1,5 @@
+
+/* Define a fonte, as cores de fundo e texto e os espaçamentos da página */
 body{
     font-family: Arial, Helvetica, sans-serif;
     padding-top: 20px;
@@ -7,23 +9,27 @@ body{
     color: #2c1e16;
 }
 
+/* Personaliza o título principal */
 h1{
     color: #2c1e16;
     margin-bottom: 5px;
 }
 
+/* Define a aparência e o espaçamento do subtítulo */
 .subtitulo{
     color: #2c1e16;
     margin-bottom: 25px;
     margin-top: 0;
 }
 
+/* Personaliza os títulos das perguntas do formulário */
 h4{
     color: #2c1e16;
     margin-top: 25px;
     margin-bottom: 10px;
 }
 
+/* Define a largura e remove a aparência padrão da barra de intensidade */
 input[type="range"] {
     width: 1200px;
     max-width: 100%;
@@ -33,6 +39,7 @@ input[type="range"] {
     background: transparent;
 }
 
+/* Define as cores da barra conforme a intensidade selecionada */
 input[type="range"]::-webkit-slider-runnable-track {
     height: 6px;
     background: linear-gradient(
@@ -45,6 +52,7 @@ input[type="range"]::-webkit-slider-runnable-track {
     border-radius: 5px;
 }
 
+/* Personaliza o botão circular que desliza pela barra de intensidade */
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
@@ -56,6 +64,7 @@ input[type="range"]::-webkit-slider-thumb {
     margin-top: -6px;
 }
 
+/* Posiciona as legendas Suave e Intenso nas extremidades da barra */
 .legenda-intensidade{
     display: flex;
     justify-content: space-between;
@@ -65,6 +74,7 @@ input[type="range"]::-webkit-slider-thumb {
     color: #6e5a4f;
 }
 
+/* Personaliza a lista de seleção dos métodos de preparo */
 select {
     display: block;
     width: 1200px;
@@ -80,6 +90,7 @@ select {
     margin-top: 5px;
 }
 
+/* Organiza as opções de sabores em duas colunas */
 .sabores {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -89,6 +100,7 @@ select {
     margin-top: 10px;
 }
 
+/* Define o tamanho, as cores e as bordas do campo de comentários */
 textarea {
     display: block;
     width: 1200px;
@@ -107,6 +119,7 @@ textarea {
     resize: vertical;
 }
 
+/* Personaliza a aparência dos botões da página */
 button {
     background-color: #C87D55;
     color: #FFFFFF;
@@ -116,6 +129,56 @@ button {
     cursor: pointer;
 }
 
+/* Altera a cor dos botões quando o mouse passa sobre eles */
 button:hover {
     background-color: #A65D37;
+}
+
+/* Altera a cor dos botões de acessibilidade ao passar o mouse */
+.barra-acessibilidade button:hover {
+    background-color: #a65d37;
+}
+
+/* Destaca os botões de acessibilidade quando selecionados pelo teclado */
+.barra-acessibilidade button:focus-visible {
+    outline: 3px solid #2c1e16;
+    outline-offset: 3px;
+}
+
+/* Define as cores de fundo e texto quando o modo escuro está ativado */
+body.modo-escuro {
+    background-color: #1E1713;
+    color: #F5EDE5;
+}
+
+/* Altera as cores dos títulos, textos, links e rótulos no modo escuro */
+.modo-escuro h1,
+.modo-escuro h2,
+.modo-escuro label,
+.modo-escuro p,
+.modo-escuro a {
+    color: #F5EDE5;
+}
+
+/* Personaliza as cores dos campos de entrada no modo escuro */
+.modo-escuro input {
+    background-color: #44362E;
+    color: #FFFFFF;
+    border-color: #A68A78;
+}
+
+/* Define as cores dos botões de acessibilidade no modo escuro */
+.modo-escuro .barra-acessibilidade button {
+    background-color: #6E4B37;
+    color: #FFFFFF;
+}
+
+/* Mantém os botões de acessibilidade fixos no canto superior direito */
+.barra-acessibilidade {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
 }

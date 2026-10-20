@@ -1,15 +1,27 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Configurações gerais da página -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pefil de Café</title>
     <link rel="stylesheet" href="perfil.css">
 </head>
 <body>
+    <!-- Botões de acessibilidade para ajustar a fonte e alternar o tema -->
+    <div class="barra-acessibilidade" role="group" aria-label="Ferramentas de acessibilidade">
+        <button type="button" id="diminuir-fonte">A-</button>
+        <button type="button" id="aumentar-fonte">A+</button>
+        <button type="button" id="alternar-tema">🌙 </button>
+    </div>
+
+    <!-- Título e apresentação do formulário -->
     <h1><strong>Seu Perfil de Café</strong></h1>
     <p class="subtitulo">Responda às questões abaixo para criarmos a sua assinatura sensorial perfeita</p>
 
+    <form id="form-perfil">
+    <!-- Opções para selecionar a frequência de consumo de café -->
     <h4>Com que freqência você toma café?</h4>
     <input type="radio" id="diariamente" name="Freqência" value="diariamente">
     <label for="diariamente">Diariamente</label><br>
@@ -20,6 +32,7 @@
     <input type="radio" id="nunca" name="Freqência" value="nunca">
     <label for="Nunca">Nunca</label><br>
 
+    <!-- Barra para escolher a intensidade do café de 1 a 10 -->
     <h4>Intensidade</h4>
     <input type="range" id="intensidade" min="1" max="10" value="5">
     <div class="legenda-intensidade">
@@ -27,8 +40,10 @@
         <span>Intenso</span>
     </div>
 
+    <!-- Lista de métodos de preparo disponíveis -->
     <h4>Método de preparo favorito</h4>
     <select name="metodo-preparo" id="metodo-preparo">
+        <option value=""selected disabled>Selecione um método</option>
         <option value="coado">Coado</option>
         <option value="presna-francesa">Prensa Francesa</option>
         <option value="espresso">Espresso</option>
@@ -37,6 +52,7 @@
         <option value="chemex">Chemex</option>
     </select>
 
+    <!-- Caixas de seleção dos sabores preferidos -->
     <h4>Sabores que você aprecia</h4>
     <div class="sabores">
     <label><input type="checkbox"> Chocolate</label>
@@ -47,12 +63,19 @@
     <label><input type="checkbox"> Cítrico</label>
     </div> <br>
 
+    <!-- Campo para informar preferências adicionais -->
     <h4><label for="comentario">Comentário adicionais</label></h4>
     <textarea name="comentario" id="comentario" rows="15" 
     placeholder="Conte-nos um pouco mais sobre como você prefere adoçar, se usa leite, ou qualquer outra preferência especial..."></textarea><br>
     <br>
-    <button type="submit">Enviar</button>
 
+    <!-- Botões para enviar ou limpar as respostas do formulário -->
+    <button type="submit">Enviar</button>
+    <button type="reset">Limpar</button>
+
+    </form>
+
+    <!-- Conecta o JavaScript responsável pelas funcionalidades da página -->
     <script src="perfil.js"></script>    
 </body>
 </html>

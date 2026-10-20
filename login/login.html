@@ -1,55 +1,72 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <!-- Configurações gerais da página e conexão com o CSS -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Café & Grãos</title>
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
+    <!-- Botões de acessibilidade para ajustar a fonte e alternar o tema -->
+    <div class="barra-acessibilidade" role="group" aria-label="Ferramentas de acessibilidade">
+        <button type="button" id="diminuir-fonte">A-</button>
+        <button type="button" id="aumentar-fonte">A+</button>
+        <button type="button" id="alternar-tema">🌙 </button>
+    </div>
 
-    <div class="login-container"> 
+    <!-- Container principal com o título e o formulário de login -->
+    <div class="login-container">
         <h2>Bem-vindo ao Café & Grãos! ☕</h2>
         <p>Acesse sua conta para continuar.</p>
+
+        <!-- Formulário de login com validação personalizada pelo JavaScript -->
         <form id="form-login" action="#" method="POST" novalidate>
-            <div class="form-group"> 
-                <label for="Login">Usuário</label>
-                <input type="text" id = "login" name="Login"
+
+            <!-- Campo para digitar o usuário e exibir mensagens de erro -->
+            <div class="form-group">
+                <label for="login">Usuário</label>
+                <input type="text" id="login" name="Login"
                 placeholder="Digite seu usuário" required>
                 <small id="erro-usuario" class="mensagem-erro"></small>
             </div>
+
+            <!-- Campo de senha com botão para mostrar ou ocultar os caracteres -->
             <div class="form-group">
                 <label for="senha">Senha</label>
-            <div class="campo-senha">
-                <input type="password" 
-                id="senha" name="senha"
-                placeholder="Digite sua senha" required
-                >
-                <small id="erro-senha" class="mensagem-erro"></small>
-                <button type="button" id="mostrar-senha"
-                >⌣</button>
-            </div>
+                <div class="campo-senha">
+                    <input type="password"
+                    id="senha" name="senha"
+                    placeholder="Digite sua senha" required>
+                    <small id="erro-senha" class="mensagem-erro"></small>
+                    <button type="button" id="mostrar-senha">⌣</button>
+                </div>
+
+                <!-- Opção de lembrar o usuário e link para recuperar a senha -->
                 <div class="opcoes-login">
                     <label for="lembrar">
-                        <input type="checkbox" 
+                        <input type="checkbox"
                         id="lembrar" name="lembrar">
                         Lembrar de mim
                     </label>
                     <a href="#">Esqueci minha senha</a>
                 </div>
-                 </div>
-                <button type="submit"
-                class="btn-entrar">Entrar</button>
+            </div>
+
+            <!-- Botão para enviar os dados do formulário -->
+            <button type="submit" class="btn-entrar">Entrar</button>
         </form>
+
+        <!-- Link para cadastro de novos usuários -->
         <div class="links_uteis">
-            
             <span>Não tem uma conta?
                 <a href="#">Criar conta</a>
             </span>
-
         </div>
-
     </div>
+
+    <!-- Conecta o JavaScript responsável pelas funcionalidades do login -->
     <script src="login.js"></script>
 </body>
 </html>

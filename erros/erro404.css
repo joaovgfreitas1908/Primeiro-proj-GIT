@@ -1,11 +1,13 @@
-body{
+
+/* Define a fonte, as cores e remove as margens da página */
+body {
     margin: 0;
     font-family: Arial;
     background-color: #faf6f0;
     color: #2c1e16;
-
 }
 
+/* Centraliza a imagem e as mensagens de erro na página */
 .container-erro {
     display: flex;
     flex-direction: column;
@@ -16,42 +18,49 @@ body{
     color: #2c1e16;
 }
 
+/* Define o tamanho e o espaçamento do código de erro 404 */
 .codigo-erro {
     font-size: 100px;
     margin: 0;
 }
 
-.container-erro h2{
+/* Personaliza o título da mensagem de erro */
+.container-erro h2 {
     font-size: 32px;
     margin: 10px 0;
 }
 
+/* Define o tamanho e o espaçamento do texto explicativo */
 .container-erro p {
     font-size: 18px;
     margin: 0;
 }
-    
+
+/* Ajusta o tamanho e o espaçamento da imagem da xícara */
 .imagem-erro {
     width: 220px;
     height: auto;
     margin: 20px 0;
 }
 
-.texto-erro{
+/* Desloca o conteúdo de texto para cima */
+.texto-erro {
     transform: translateY(-55px);
 }
 
-    .btn-voltar{
-        display: inline-block;
-        margin-top: 20px;
-        padding: 12px 24px;
-        background-color: #c87d55;
-        color: white;
-        text-decoration: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
+/* Personaliza a aparência do botão Voltar */
+.btn-voltar {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: #c87d55;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
 
-    .btn-voltar:hover{
-        background-color: #a65d37;
-    }
+/* Altera a cor do botão quando o mouse passa sobre ele */
+.btn-voltar:hover {
+    background-color: #a65d37;
+}
