@@ -1,63 +1,136 @@
 
 const senha = document.getElementById("senha");
 const mostrarSenha = document.getElementById("mostrar-senha");
+const olhoAberto = document.getElementById("olho-aberto");
+const olhoFechado = document.getElementById("olho-fechado");
+
+
+// Atualiza os ícones conforme a senha está visível ou escondida
+function atualizarIconesSenha() {
+    const senhaVisivel = senha.type === "text";
+
+    // Mostra o olho aberto quando a senha está visível
+    olhoAberto.style.display = senhaVisivel ? "block" : "none";
+
+    // Mostra o olho riscado quando a senha está escondida
+    olhoFechado.style.display = senhaVisivel ? "none" : "block";
+
+    // Remove atributos antigos que poderiam esconder os ícones
+    olhoAberto.removeAttribute("hidden");
+    olhoFechado.removeAttribute("hidden");
+
+    olhoAberto.classList.remove("icone-oculto");
+    olhoFechado.classList.remove("icone-oculto");
+
+    // Atualiza a acessibilidade do botão
+    mostrarSenha.setAttribute(
+        "aria-label",
+        senhaVisivel ? "Ocultar senha" : "Mostrar senha"
+    );
+
+    mostrarSenha.setAttribute(
+        "aria-pressed",
+        String(senhaVisivel)
+    );
+}
+
 
 // Permite mostrar ou ocultar a senha ao clicar no botão
 mostrarSenha.addEventListener("click", function () {
     if (senha.type === "password") {
         senha.type = "text";
-        mostrarSenha.textContent = "👁";
     } else {
         senha.type = "password";
-        mostrarSenha.textContent = "⌣";
     }
+
+    atualizarIconesSenha();
 });
+
+// Define os ícones corretos ao carregar a página
+atualizarIconesSenha();
 
 const formlogin = document.getElementById("form-login");
 const usuario = document.getElementById("login");
 const erroUsuario = document.getElementById("erro-usuario");
 const erroSenha = document.getElementById("erro-senha");
 
+// Exibe a mensagem, a borda vermelha e a tremida no campo inválido
+function mostrarErro(campo, mensagem, elementoErro) {
+    elementoErro.textContent = mensagem;
+    campo.classList.add("input-erro");
+    campo.setAttribute("aria-invalid", "true");
+
+    campo.classList.remove("input-shake");
+
+    // Reinicia a animação ao tentar enviar novamente
+    void campo.offsetWidth;
+
+    campo.classList.add("input-shake");
+}
+
+// Remove a mensagem e a borda vermelha quando o campo é corrigido
+function limparErro(campo, elementoErro) {
+    elementoErro.textContent = "";
+    campo.classList.remove("input-erro", "input-shake");
+    campo.removeAttribute("aria-invalid");
+}
+
 // Verifica se os campos de usuário e senha foram preenchidos antes de enviar
 formlogin.addEventListener("submit", function (event) {
     event.preventDefault();
 
-    if (usuario.value.trim() == "" && senha.value.trim() == "") {
-        erroUsuario.textContent = "Digite seu usuário";
-        erroSenha.textContent = "Digite sua senha";
-
-        usuario.classList.add("input-erro");
-        senha.classList.add("input-erro");
-        return;
-    }
+    let formularioValido = true;
+    let primeiroCampoInvalido = null;
 
     if (usuario.value.trim() === "") {
-        erroUsuario.textContent = "Digite seu usuário";
-        usuario.classList.add("input-erro");
-        return;
+        mostrarErro(usuario, "Digite seu usuário", erroUsuario);
+        formularioValido = false;
+        primeiroCampoInvalido = usuario;
+    } else {
+        limparErro(usuario, erroUsuario);
     }
 
     if (senha.value.trim() === "") {
-        erroSenha.textContent = "Digite sua senha";
-        senha.classList.add("input-erro");
+        mostrarErro(senha, "Digite sua senha", erroSenha);
+        formularioValido = false;
+
+        if (primeiroCampoInvalido === null) {
+            primeiroCampoInvalido = senha;
+        }
+    } else {
+        limparErro(senha, erroSenha);
+    }
+
+    // Direciona o foco para o primeiro campo que precisa ser preenchido
+    if (!formularioValido) {
+        primeiroCampoInvalido.focus();
         return;
     }
+
+    // O formulário foi validado, mas ainda não possui autenticação
 });
 
-// Remove a mensagem de erro quando o usuário começa a preencher o campo
+// Remove a mensagem de erro quando o usuário preenche o campo
 usuario.addEventListener("input", function () {
     if (usuario.value.trim() !== "") {
-        erroUsuario.textContent = "";
-        usuario.classList.remove("input-erro");
+        limparErro(usuario, erroUsuario);
     }
 });
 
-// Remove a mensagem de erro da senha quando o campo é preenchido
+// Remove a mensagem de erro quando a senha é preenchida
 senha.addEventListener("input", function () {
     if (senha.value.trim() !== "") {
-        erroSenha.textContent = "";
-        senha.classList.remove("input-erro");
+        limparErro(senha, erroSenha);
     }
+});
+
+// Remove a animação após a tremida terminar
+usuario.addEventListener("animationend", function () {
+    usuario.classList.remove("input-shake");
+});
+
+senha.addEventListener("animationend", function () {
+    senha.classList.remove("input-shake");
 });
 
 // Configura as ferramentas de acessibilidade após o carregamento da página

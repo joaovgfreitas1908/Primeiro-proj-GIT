@@ -13,7 +13,7 @@
     <div class="barra-acessibilidade" role="group" aria-label="Ferramentas de acessibilidade">
         <button type="button" id="diminuir-fonte">A-</button>
         <button type="button" id="aumentar-fonte">A+</button>
-        <button type="button" id="alternar-tema">🌙 </button>
+        <button type="button" id="alternar-tema">Escuro</button>
     </div>
 
     <!-- Container principal com o título e o formulário de login -->
@@ -28,26 +28,70 @@
             <div class="form-group">
                 <label for="login">Usuário</label>
                 <input type="text" id="login" name="Login"
-                placeholder="Digite seu usuário" required>
-                <small id="erro-usuario" class="mensagem-erro"></small>
+                    placeholder="Digite seu usuário"
+                    autocomplete="username"
+                    aria-describedby="erro-usuario"
+                    required>
+                <small id="erro-usuario" class="mensagem-erro" aria-live="polite"></small>
             </div>
 
             <!-- Campo de senha com botão para mostrar ou ocultar os caracteres -->
             <div class="form-group">
                 <label for="senha">Senha</label>
+
                 <div class="campo-senha">
-                    <input type="password"
-                    id="senha" name="senha"
-                    placeholder="Digite sua senha" required>
-                    <small id="erro-senha" class="mensagem-erro"></small>
-                    <button type="button" id="mostrar-senha">⌣</button>
+                    <input type="password" id="senha" name="senha"
+                        placeholder="Digite sua senha"
+                        autocomplete="current-password"
+                        aria-describedby="erro-senha"
+                        required>
+
+                    <button type="button" id="mostrar-senha"
+                        aria-label="Mostrar senha"
+                        aria-pressed="false"
+                        aria-controls="senha">
+
+                        <!-- Ícone de olho aberto para quando a senha estiver visível -->
+                        <svg id="olho-aberto"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20" height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                            hidden>
+                            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+
+                        <!-- Ícone de olho riscado para quando a senha estiver oculta -->
+                        <svg id="olho-fechado"
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20" height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true">
+                            <path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-1.444 2.49"/>
+                            <path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/>
+                            <path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/>
+                            <path d="m2 2 20 20"/>
+                        </svg>
+                    </button>
                 </div>
+
+                <small id="erro-senha" class="mensagem-erro" aria-live="polite"></small>
 
                 <!-- Opção de lembrar o usuário e link para recuperar a senha -->
                 <div class="opcoes-login">
                     <label for="lembrar">
-                        <input type="checkbox"
-                        id="lembrar" name="lembrar">
+                        <input type="checkbox" id="lembrar" name="lembrar">
                         Lembrar de mim
                     </label>
                     <a href="#">Esqueci minha senha</a>
