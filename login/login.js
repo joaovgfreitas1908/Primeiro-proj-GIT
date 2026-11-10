@@ -5,24 +5,24 @@ const olhoAberto = document.getElementById("olho-aberto");
 const olhoFechado = document.getElementById("olho-fechado");
 
 
-// Atualiza os ícones conforme a senha está visível ou escondida
+// Atualiza os ícones conforme a senha está visível ou escondida.
 function atualizarIconesSenha() {
     const senhaVisivel = senha.type === "text";
 
-    // Mostra o olho aberto quando a senha está visível
-    olhoAberto.style.display = senhaVisivel ? "block" : "none";
-
-    // Mostra o olho riscado quando a senha está escondida
-    olhoFechado.style.display = senhaVisivel ? "none" : "block";
-
-    // Remove atributos antigos que poderiam esconder os ícones
+    // Remove atributos antigos que poderiam esconder os ícones.
     olhoAberto.removeAttribute("hidden");
     olhoFechado.removeAttribute("hidden");
+
+    // Mostra o olho aberto quando a senha está visível.
+    olhoAberto.style.display = senhaVisivel ? "block" : "none";
+
+    // Mostra o olho riscado quando a senha está escondida.
+    olhoFechado.style.display = senhaVisivel ? "none" : "block";
 
     olhoAberto.classList.remove("icone-oculto");
     olhoFechado.classList.remove("icone-oculto");
 
-    // Atualiza a acessibilidade do botão
+    // Atualiza a acessibilidade do botão.
     mostrarSenha.setAttribute(
         "aria-label",
         senhaVisivel ? "Ocultar senha" : "Mostrar senha"
@@ -35,7 +35,7 @@ function atualizarIconesSenha() {
 }
 
 
-// Permite mostrar ou ocultar a senha ao clicar no botão
+// Permite mostrar ou ocultar a senha ao clicar no botão.
 mostrarSenha.addEventListener("click", function () {
     if (senha.type === "password") {
         senha.type = "text";
@@ -46,15 +46,19 @@ mostrarSenha.addEventListener("click", function () {
     atualizarIconesSenha();
 });
 
-// Define os ícones corretos ao carregar a página
+// Define os ícones corretos ao carregar a página.
 atualizarIconesSenha();
+
 
 const formlogin = document.getElementById("form-login");
 const usuario = document.getElementById("login");
 const erroUsuario = document.getElementById("erro-usuario");
 const erroSenha = document.getElementById("erro-senha");
+const notificacao = document.getElementById("notificacao-sucesso");
+const botaoEntrar = document.querySelector(".btn-entrar");
 
-// Exibe a mensagem, a borda vermelha e a tremida no campo inválido
+
+// Exibe a mensagem, a borda vermelha e a tremida no campo inválido.
 function mostrarErro(campo, mensagem, elementoErro) {
     elementoErro.textContent = mensagem;
     campo.classList.add("input-erro");
@@ -62,26 +66,41 @@ function mostrarErro(campo, mensagem, elementoErro) {
 
     campo.classList.remove("input-shake");
 
-    // Reinicia a animação ao tentar enviar novamente
+    // Reinicia a animação ao tentar enviar novamente.
     void campo.offsetWidth;
 
     campo.classList.add("input-shake");
 }
 
-// Remove a mensagem e a borda vermelha quando o campo é corrigido
+
+// Remove a mensagem e a borda vermelha quando o campo é corrigido.
 function limparErro(campo, elementoErro) {
     elementoErro.textContent = "";
     campo.classList.remove("input-erro", "input-shake");
     campo.removeAttribute("aria-invalid");
 }
 
-// Verifica se os campos de usuário e senha foram preenchidos antes de enviar
+
+// Exibe a notificação verde de confirmação.
+function mostrarNotificacao(mensagem) {
+    if (!notificacao) return;
+
+    notificacao.textContent = mensagem;
+    notificacao.classList.add("mostrar");
+}
+
+
+// Verifica se os campos de usuário e senha foram preenchidos antes de enviar.
 formlogin.addEventListener("submit", function (event) {
     event.preventDefault();
+
+    // Impede vários envios durante o redirecionamento.
+    if (botaoEntrar.disabled) return;
 
     let formularioValido = true;
     let primeiroCampoInvalido = null;
 
+    // Valida o campo de usuário.
     if (usuario.value.trim() === "") {
         mostrarErro(usuario, "Digite seu usuário", erroUsuario);
         formularioValido = false;
@@ -90,6 +109,7 @@ formlogin.addEventListener("submit", function (event) {
         limparErro(usuario, erroUsuario);
     }
 
+    // Valida o campo de senha.
     if (senha.value.trim() === "") {
         mostrarErro(senha, "Digite sua senha", erroSenha);
         formularioValido = false;
@@ -101,30 +121,43 @@ formlogin.addEventListener("submit", function (event) {
         limparErro(senha, erroSenha);
     }
 
-    // Direciona o foco para o primeiro campo que precisa ser preenchido
+    // Direciona o foco para o primeiro campo inválido.
     if (!formularioValido) {
         primeiroCampoInvalido.focus();
         return;
     }
 
-    // O formulário foi validado, mas ainda não possui autenticação
+    // Simula o sucesso do login após validar os campos.
+    mostrarNotificacao("Login efetuado com sucesso!");
+
+    // Desativa o botão para impedir vários envios.
+    botaoEntrar.disabled = true;
+    botaoEntrar.textContent = "Entrando...";
+
+    // Aguarda 2 segundos antes de abrir a página de perfil.
+    setTimeout(function () {
+        window.location.href = "../perfil/perfil.html";
+    }, 2000);
 });
 
-// Remove a mensagem de erro quando o usuário preenche o campo
+
+// Remove a mensagem de erro quando o usuário preenche o campo.
 usuario.addEventListener("input", function () {
     if (usuario.value.trim() !== "") {
         limparErro(usuario, erroUsuario);
     }
 });
 
-// Remove a mensagem de erro quando a senha é preenchida
+
+// Remove a mensagem de erro quando a senha é preenchida.
 senha.addEventListener("input", function () {
     if (senha.value.trim() !== "") {
         limparErro(senha, erroSenha);
     }
 });
 
-// Remove a animação após a tremida terminar
+
+// Remove a animação após a tremida terminar.
 usuario.addEventListener("animationend", function () {
     usuario.classList.remove("input-shake");
 });
@@ -133,7 +166,8 @@ senha.addEventListener("animationend", function () {
     senha.classList.remove("input-shake");
 });
 
-// Configura as ferramentas de acessibilidade após o carregamento da página
+
+// Configura as ferramentas de acessibilidade após o carregamento da página.
 document.addEventListener("DOMContentLoaded", function () {
 
     const aumentarFonte = document.getElementById("aumentar-fonte");
@@ -146,13 +180,13 @@ document.addEventListener("DOMContentLoaded", function () {
         "h1, h2, h3, p, label, input, button, a, small, span"
     );
 
-    // Armazena o tamanho original das fontes para permitir os ajustes
+    // Armazena o tamanho original das fontes para permitir os ajustes.
     textos.forEach(function (elemento) {
         elemento.dataset.fonteOriginal =
             parseFloat(getComputedStyle(elemento).fontSize);
     });
 
-    // Atualiza o tamanho dos textos conforme a escala selecionada
+    // Atualiza o tamanho dos textos conforme a escala selecionada.
     function atualizarFonte() {
         textos.forEach(function (elemento) {
             const tamanhoOriginal = Number(elemento.dataset.fonteOriginal);
@@ -162,7 +196,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Aumenta o tamanho da fonte até o limite de 140%
+    // Aumenta o tamanho da fonte até o limite de 140%.
     aumentarFonte.addEventListener("click", function () {
         if (escalaFonte < 1.4) {
             escalaFonte = Math.round((escalaFonte + 0.1) * 10) / 10;
@@ -170,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Diminui o tamanho da fonte até o limite de 80%
+    // Diminui o tamanho da fonte até o limite de 80%.
     diminuirFonte.addEventListener("click", function () {
         if (escalaFonte > 0.8) {
             escalaFonte = Math.round((escalaFonte - 0.1) * 10) / 10;
@@ -178,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Alterna entre os temas claro e escuro da página
+    // Alterna entre os temas claro e escuro da página.
     alternarTema.addEventListener("click", function () {
         document.body.classList.toggle("modo-escuro");
 

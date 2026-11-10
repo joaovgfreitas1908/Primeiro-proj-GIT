@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const metodo = document.getElementById("metodo-preparo");
   const sabores = formulario.querySelectorAll('input[type="checkbox"]');
   const comentario = document.getElementById("comentario");
+  const notificacao = document.getElementById("notificacao-sucesso");
 
 
   // Atualiza a parte preenchida da barra de intensidade.
@@ -193,14 +194,45 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
-  // Cria a mensagem de confirmação do formulário.
-  const sucesso = document.createElement("p");
-  sucesso.style.color = "#2e7d32";
-  sucesso.style.fontWeight = "bold";
-  sucesso.style.marginTop = "15px";
-  sucesso.setAttribute("role", "status");
+  // Controla o tempo de exibição da notificação.
+  let tempoNotificacao;
 
-  formulario.appendChild(sucesso);
+
+  // Exibe a confirmação verde no canto inferior direito.
+  function mostrarNotificacao(mensagem) {
+    if (!notificacao) return;
+
+    clearTimeout(tempoNotificacao);
+
+    notificacao.textContent = mensagem;
+    notificacao.classList.add("mostrar");
+
+    // Esconde a notificação automaticamente após 3 segundos.
+    tempoNotificacao = setTimeout(function () {
+      esconderNotificacao();
+    }, 3000);
+  }
+
+
+  // Esconde a notificação e cancela o temporizador anterior.
+  function esconderNotificacao() {
+    if (!notificacao) return;
+
+    clearTimeout(tempoNotificacao);
+    notificacao.classList.remove("mostrar");
+
+    // Aguarda a animação antes de remover a mensagem.
+    const mensagemAtual = notificacao.textContent;
+
+    setTimeout(function () {
+      if (
+        !notificacao.classList.contains("mostrar") &&
+        notificacao.textContent === mensagemAtual
+      ) {
+        notificacao.textContent = "";
+      }
+    }, 300);
+  }
 
 
   // Verifica os campos obrigatórios quando o usuário clica em Enviar.
@@ -208,7 +240,9 @@ document.addEventListener("DOMContentLoaded", function () {
     evento.preventDefault();
 
     let formularioValido = true;
-    sucesso.textContent = "";
+
+    // Esconde uma confirmação anterior antes de validar novamente.
+    esconderNotificacao();
 
 
     // Verifica se a frequência de consumo foi selecionada.
@@ -267,10 +301,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // Exibe a confirmação quando todos os campos estão corretos.
+    // Exibe a notificação quando todos os campos estão corretos.
     if (formularioValido) {
-      sucesso.textContent =
-        "Suas preferências foram preenchidas com sucesso!";
+      mostrarNotificacao(
+        "Preferências enviadas com sucesso!"
+      );
     }
   });
 
@@ -282,7 +317,7 @@ document.addEventListener("DOMContentLoaded", function () {
     limparErro("erro-sabores");
 
     metodo.style.border = "";
-    sucesso.textContent = "";
+    esconderNotificacao();
 
     setTimeout(function () {
       atualizarBarra();
@@ -292,4 +327,3 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 });
-

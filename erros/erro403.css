@@ -1,10 +1,24 @@
 
+/* --- PALETA OFICIAL DO CAFÉ & GRÃOS --- */
+
+/* Importa a fonte oficial do projeto */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Define as cores oficiais utilizadas no projeto */
+:root {
+    --cor-marrom-cafe: #3D2417;
+    --cor-marrom-medio: #674F41;
+    --cor-creme: #FAF2E6;
+    --cor-bege: #EBE2D7;
+    --cor-taupe: #97867A;
+}
+
 /* Define a fonte, as cores e remove as margens da página */
 body {
     margin: 0;
-    font-family: Arial;
-    background-color: #faf6f0;
-    color: #2c1e16;
+    font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: var(--cor-creme);
+    color: var(--cor-marrom-cafe);
 }
 
 /* Centraliza a imagem e as mensagens de erro na página */
@@ -15,35 +29,38 @@ body {
     align-items: center;
     height: 100vh;
     text-align: center;
-    color: #2c1e16;
+    color: var(--cor-marrom-cafe);
 }
 
 /* Define o tamanho e o espaçamento do código de erro 403 */
 .codigo-erro {
     font-size: 100px;
     margin: 0;
+    color: var(--cor-marrom-cafe);
 }
 
 /* Personaliza o título da mensagem de erro */
 .container-erro h2 {
     font-size: 32px;
     margin: 10px 0;
+    color: var(--cor-marrom-cafe);
 }
 
 /* Define o tamanho e o espaçamento do texto explicativo */
 .container-erro p {
     font-size: 18px;
     margin: 0;
+    color: var(--cor-marrom-medio);
 }
 
-/* Ajusta o tamanho e o espaçamento da imagem da xícara */
+/* Mantém o tamanho e o espaçamento original da imagem da xícara */
 .imagem-erro {
     width: 220px;
     height: auto;
     margin: 20px 0;
 }
 
-/* Desloca o conteúdo de texto para cima */
+/* Mantém o deslocamento original do conteúdo de texto */
 .texto-erro {
     transform: translateY(-55px);
 }
@@ -53,14 +70,22 @@ body {
     display: inline-block;
     margin-top: 20px;
     padding: 12px 24px;
-    background-color: #c87d55;
-    color: white;
+    background-color: var(--cor-marrom-cafe);
+    color: #FFFFFF;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
 }
 
 /* Altera a cor do botão quando o mouse passa sobre ele */
 .btn-voltar:hover {
-    background-color: #a65d37;
+    background-color: var(--cor-taupe);
+}
+
+/* Destaca o botão ao navegar pelo teclado */
+.btn-voltar:focus-visible {
+    outline: 3px solid var(--cor-marrom-medio);
+    outline-offset: 3px;
 }
