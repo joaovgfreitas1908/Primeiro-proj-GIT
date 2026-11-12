@@ -20,7 +20,7 @@
 /* Define o fundo, a fonte e os espaçamentos da página */
 body {
     margin: 0;
-    padding: 30px 50px 50px;
+    padding: 30px 50px 50px 90px;
     font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     background-color: var(--cor-creme);
     color: var(--cor-marrom-cafe);
@@ -223,21 +223,39 @@ button:focus-visible {
     outline-offset: 3px;
 }
 
-/* Mantém a barra de acessibilidade no canto superior direito */
+/* --- BARRA DE ACESSIBILIDADE VERTICAL --- */
+
+/* Posiciona a barra na vertical no canto esquerdo */
 .barra-acessibilidade {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+
     display: flex;
+    flex-direction: column;
     gap: 10px;
+
     z-index: 1000;
 }
 
 /* Personaliza os botões de acessibilidade */
 .barra-acessibilidade button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 45px;
+    height: 45px;
+    padding: 0;
+
     background-color: var(--cor-marrom-cafe);
     color: #FFFFFF;
-    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+
+    cursor: pointer;
+    font-family: inherit;
     font-size: 14px;
     font-weight: 500;
 }
@@ -247,7 +265,7 @@ button:focus-visible {
     background-color: var(--cor-taupe);
 }
 
-/* Destaca os botões de acessibilidade pelo teclado */
+/* Destaca os botões pelo teclado */
 .barra-acessibilidade button:focus-visible {
     outline: 3px solid var(--cor-marrom-cafe);
     outline-offset: 3px;
@@ -255,45 +273,123 @@ button:focus-visible {
 
 /* --- TEMA ESCURO --- */
 
-/* Define as cores gerais do modo escuro */
+/* Define a nova paleta do modo escuro */
 body.modo-escuro {
-    background-color: #1E1713;
-    color: #F5EDE5;
+    --escuro-fundo: #211813;
+    --escuro-superficie: #35271F;
+    --escuro-campo: #49372D;
+    --escuro-texto: #F8EEDF;
+    --escuro-secundario: #E0C8B3;
+    --escuro-destaque: #D4AD89;
+    --escuro-borda: #A88A73;
+
+    background-color: var(--escuro-fundo);
+    color: var(--escuro-texto);
 }
 
-/* Ajusta os títulos, textos e rótulos */
+/* Melhora a legibilidade dos títulos */
 .modo-escuro h1,
 .modo-escuro h2,
-.modo-escuro h4,
-.modo-escuro label,
-.modo-escuro p,
-.modo-escuro a {
-    color: #F5EDE5;
+.modo-escuro h4 {
+    color: var(--escuro-texto);
 }
 
-/* Ajusta as cores dos campos */
+/* Ajusta as cores dos textos e rótulos */
+.modo-escuro p,
+.modo-escuro label,
+.modo-escuro .subtitulo,
+.modo-escuro .legenda-intensidade,
+.modo-escuro #form-perfil > span,
+.modo-escuro #form-perfil > small {
+    color: var(--escuro-secundario);
+}
+
+/* Personaliza os campos no modo escuro */
 .modo-escuro select,
 .modo-escuro textarea {
-    background-color: #44362E;
-    color: #FFFFFF;
-    border-color: #A68A78;
+    background-color: var(--escuro-campo);
+    color: var(--escuro-texto);
+    border: 1px solid var(--escuro-borda);
 }
 
-/* Ajusta as legendas da intensidade */
-.modo-escuro .legenda-intensidade {
-    color: #F5EDE5;
+/* Melhora a visibilidade do texto de exemplo */
+.modo-escuro textarea::placeholder {
+    color: var(--escuro-secundario);
+    opacity: 1;
 }
 
-/* Mantém radio e checkbox visíveis no modo escuro */
+/* Destaca os campos ao receberem foco */
+.modo-escuro select:focus,
+.modo-escuro textarea:focus {
+    outline: 2px solid var(--escuro-destaque);
+    outline-offset: 2px;
+}
+
+/* Personaliza os botões radio e checkbox */
 .modo-escuro input[type="radio"],
 .modo-escuro input[type="checkbox"] {
-    accent-color: #C9A58D;
+    accent-color: var(--escuro-destaque);
 }
 
-/* Ajusta os botões de acessibilidade */
+/* Ajusta a barra de intensidade no Chrome e Edge */
+.modo-escuro input[type="range"]::-webkit-slider-runnable-track {
+    background: linear-gradient(
+        to right,
+        var(--escuro-destaque) 0%,
+        var(--escuro-destaque) var(--posicao),
+        var(--escuro-campo) var(--posicao),
+        var(--escuro-campo) 100%
+    );
+}
+
+/* Personaliza o círculo da barra de intensidade */
+.modo-escuro input[type="range"]::-webkit-slider-thumb {
+    background-color: var(--escuro-destaque);
+    border: 2px solid var(--escuro-texto);
+}
+
+/* Ajusta a barra de intensidade no Firefox */
+.modo-escuro input[type="range"]::-moz-range-track {
+    background-color: var(--escuro-campo);
+}
+
+.modo-escuro input[type="range"]::-moz-range-progress {
+    background-color: var(--escuro-destaque);
+}
+
+.modo-escuro input[type="range"]::-moz-range-thumb {
+    background-color: var(--escuro-destaque);
+    border: 2px solid var(--escuro-texto);
+}
+
+/* Personaliza os botões Enviar e Limpar */
+.modo-escuro #form-perfil button {
+    background-color: var(--escuro-destaque);
+    color: var(--escuro-fundo);
+    font-weight: 600;
+}
+
+/* Destaca os botões ao passar o mouse */
+.modo-escuro #form-perfil button:hover {
+    background-color: var(--escuro-texto);
+}
+
+/* Personaliza a barra de acessibilidade no modo escuro */
 .modo-escuro .barra-acessibilidade button {
-    background-color: #674F41;
-    color: #FFFFFF;
+    background-color: var(--escuro-superficie);
+    color: var(--escuro-texto);
+    border: 1px solid var(--escuro-borda);
+}
+
+/* Efeito ao passar o mouse */
+.modo-escuro .barra-acessibilidade button:hover {
+    background-color: var(--escuro-campo);
+}
+
+/* Destaca os botões ao utilizar o teclado */
+.modo-escuro button:focus-visible {
+    outline: 3px solid var(--escuro-destaque);
+    outline-offset: 3px;
 }
 
 /* --- NOTIFICAÇÃO DE SUCESSO --- */
@@ -323,7 +419,7 @@ body.modo-escuro {
     transform: translateY(20px);
     pointer-events: none;
 
-    /* Cria a animação suave de entrada e saída */
+    /* Cria a animação de entrada e saída */
     transition:
         opacity 0.3s ease,
         transform 0.3s ease,
@@ -342,21 +438,27 @@ body.modo-escuro {
 /* Ajusta a página para dispositivos menores */
 @media (max-width: 600px) {
     body {
-        padding: 90px 20px 40px;
+        padding: 30px 15px 40px 65px;
     }
 
     h1 {
         font-size: 1.6rem;
     }
 
+    /* Mantém a barra vertical no celular */
     .barra-acessibilidade {
-        top: 15px;
-        right: 15px;
-        gap: 5px;
+        top: 50%;
+        left: 5px;
+        right: auto;
+        transform: translateY(-50%);
+        gap: 6px;
     }
 
     .barra-acessibilidade button {
-        padding: 8px 12px;
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        font-size: 12px;
     }
 
     .sabores {
@@ -369,6 +471,13 @@ body.modo-escuro {
         right: 20px;
         bottom: 20px;
         text-align: center;
+    }
+}
+
+/* Ajusta os sabores em telas muito estreitas */
+@media (max-width: 360px) {
+    .sabores {
+        grid-template-columns: 1fr;
     }
 }
 

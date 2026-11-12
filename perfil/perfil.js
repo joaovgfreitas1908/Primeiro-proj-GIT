@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Aumenta o tamanho da fonte até o limite de 140%.
   if (aumentarFonte) {
     aumentarFonte.addEventListener("click", function () {
       if (escalaFonte < 1.4) {
@@ -90,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  // Diminui o tamanho da fonte até o limite de 80%.
   if (diminuirFonte) {
     diminuirFonte.addEventListener("click", function () {
       if (escalaFonte > 0.8) {
@@ -100,16 +102,33 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
-  // Alterna entre o tema claro e o tema escuro.
+  // --- ALTERNÂNCIA ENTRE SOL E LUA ---
+
+  // Atualiza o emoji conforme o tema ativo.
+  function atualizarIconeTema() {
+    if (!alternarTema) return;
+
+    const modoEscuro = document.body.classList.contains("modo-escuro");
+
+    // Mostra somente o emoji correspondente.
+    alternarTema.textContent = modoEscuro ? "☀️" : "🌙";
+
+    // Mantém o botão acessível para leitores de tela.
+    alternarTema.setAttribute(
+      "aria-label",
+      modoEscuro ? "Ativar tema claro" : "Ativar tema escuro"
+    );
+  }
+
+  // Alterna entre os temas claro e escuro.
   if (alternarTema) {
     alternarTema.addEventListener("click", function () {
       document.body.classList.toggle("modo-escuro");
-
-      alternarTema.textContent =
-        document.body.classList.contains("modo-escuro")
-          ? "Claro"
-          : "Escuro";
+      atualizarIconeTema();
     });
+
+    // Define o emoji correto ao carregar a página.
+    atualizarIconeTema();
   }
 
 
@@ -235,13 +254,13 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 
-  // Verifica os campos obrigatórios quando o usuário clica em Enviar.
+  // Verifica os campos obrigatórios ao clicar em Enviar.
   formulario.addEventListener("submit", function (evento) {
     evento.preventDefault();
 
     let formularioValido = true;
 
-    // Esconde uma confirmação anterior antes de validar novamente.
+    // Esconde uma confirmação anterior.
     esconderNotificacao();
 
 
@@ -301,7 +320,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // Exibe a notificação quando todos os campos estão corretos.
+    // Exibe a notificação quando os campos estão corretos.
     if (formularioValido) {
       mostrarNotificacao(
         "Preferências enviadas com sucesso!"
@@ -310,7 +329,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
-  // Limpa os avisos e restaura os valores ao redefinir o formulário.
+  // Limpa os avisos e restaura os valores do formulário.
   formulario.addEventListener("reset", function () {
     limparErro("erro-frequencia");
     limparErro("erro-metodo");

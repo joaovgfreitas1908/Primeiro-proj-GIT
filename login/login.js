@@ -212,14 +212,27 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    // Atualiza o emoji conforme o tema ativo.
+    function atualizarIconeTema() {
+        const modoEscuro = document.body.classList.contains("modo-escuro");
+
+        // Exibe somente o emoji de sol ou lua.
+        alternarTema.textContent = modoEscuro ? "☀️" : "🌙";
+
+        // Mantém a identificação do botão para leitores de tela.
+        alternarTema.setAttribute(
+            "aria-label",
+            modoEscuro ? "Ativar tema claro" : "Ativar tema escuro"
+        );
+    }
+
     // Alterna entre os temas claro e escuro da página.
     alternarTema.addEventListener("click", function () {
         document.body.classList.toggle("modo-escuro");
-
-        alternarTema.textContent =
-            document.body.classList.contains("modo-escuro")
-                ? "Claro"
-                : "Escuro";
+        atualizarIconeTema();
     });
+
+    // Define o emoji correto ao carregar a página.
+    atualizarIconeTema();
 
 });

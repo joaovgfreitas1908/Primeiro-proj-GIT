@@ -257,30 +257,44 @@ p {
     animation: shake 0.3s ease;
 }
 
-/* Mantém os botões de acessibilidade no canto superior direito */
+/* --- BARRA DE ACESSIBILIDADE VERTICAL --- */
+
+/* Posiciona a barra na vertical no canto esquerdo */
 .barra-acessibilidade {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+
     display: flex;
+    flex-direction: column;
     gap: 10px;
+
     z-index: 1000;
 }
 
 /* Personaliza os botões de acessibilidade */
 .barra-acessibilidade button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 45px;
+    height: 45px;
+    padding: 0;
+
     background-color: var(--cor-marrom-cafe);
     color: #FFFFFF;
     border: none;
     border-radius: 6px;
-    padding: 10px 18px;
+
     cursor: pointer;
     font-family: inherit;
     font-size: 14px;
     font-weight: 500;
 }
 
-/* Altera a cor dos botões de acessibilidade */
+/* Altera a cor dos botões ao passar o mouse */
 .barra-acessibilidade button:hover {
     background-color: var(--cor-taupe);
 }
@@ -293,53 +307,141 @@ p {
 
 /* --- TEMA ESCURO --- */
 
-/* Define as cores gerais do modo escuro */
+/* Define a nova paleta do modo escuro */
 body.modo-escuro {
-    background-color: #1E1713;
-    color: #F5EDE5;
+    --escuro-fundo: #211813;
+    --escuro-superficie: #35271F;
+    --escuro-campo: #49372D;
+    --escuro-texto: #F8EEDF;
+    --escuro-secundario: #E0C8B3;
+    --escuro-destaque: #D4AD89;
+    --escuro-borda: #A88A73;
+
+    background-color: var(--escuro-fundo);
+    color: var(--escuro-texto);
 }
 
-/* Personaliza o container no modo escuro */
+/* Destaca o formulário do fundo escuro */
 .modo-escuro .login-container {
-    background-color: #30251F;
-    border-color: #674F41;
+    background-color: var(--escuro-superficie);
+    border: 1px solid var(--escuro-borda);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
-/* Ajusta as cores dos textos no modo escuro */
-.modo-escuro h2,
-.modo-escuro label,
-.modo-escuro p,
-.modo-escuro a {
-    color: #F5EDE5;
+/* Melhora a legibilidade do título */
+.modo-escuro h2 {
+    color: var(--escuro-texto);
 }
 
-/* Ajusta os campos no modo escuro */
-.modo-escuro .form-group input {
-    background-color: #44362E;
-    color: #FFFFFF;
-    border-color: #A68A78;
+/* Ajusta a cor dos parágrafos */
+.modo-escuro p {
+    color: var(--escuro-secundario);
 }
 
-/* Mantém os erros destacados no modo escuro */
+/* Ajusta as cores dos rótulos */
+.modo-escuro .form-group label,
+.modo-escuro .opcoes-login label {
+    color: var(--escuro-texto);
+}
+
+/* Personaliza os campos de usuário e senha */
+.modo-escuro .form-group input:not([type="checkbox"]) {
+    background-color: var(--escuro-campo);
+    color: var(--escuro-texto);
+    border: 1px solid var(--escuro-borda);
+}
+
+/* Melhora a visibilidade dos textos de exemplo */
+.modo-escuro .form-group input::placeholder {
+    color: var(--escuro-secundario);
+    opacity: 1;
+}
+
+/* Destaca os campos quando recebem foco */
+.modo-escuro .form-group input:focus {
+    outline: 2px solid var(--escuro-destaque);
+    outline-offset: 2px;
+    box-shadow: none;
+}
+
+/* Personaliza o checkbox no modo escuro */
+.modo-escuro .opcoes-login input[type="checkbox"] {
+    accent-color: var(--escuro-destaque);
+}
+
+/* Destaca os links de recuperação e cadastro */
+.modo-escuro .opcoes-login a,
+.modo-escuro .links_uteis a {
+    color: var(--escuro-destaque);
+}
+
+/* Efeito ao passar o mouse sobre os links */
+.modo-escuro .opcoes-login a:hover,
+.modo-escuro .links_uteis a:hover {
+    color: var(--escuro-texto);
+    text-decoration: underline;
+}
+
+/* Ajusta o texto de criação de conta */
+.modo-escuro .links_uteis span {
+    color: var(--escuro-secundario);
+}
+
+/* Personaliza o botão Entrar */
+.modo-escuro .btn-entrar {
+    background-color: var(--escuro-destaque);
+    color: var(--escuro-fundo);
+    font-weight: 600;
+}
+
+/* Destaca o botão ao passar o mouse */
+.modo-escuro .btn-entrar:hover {
+    background-color: var(--escuro-texto);
+}
+
+/* Mantém o botão legível durante o redirecionamento */
+.modo-escuro .btn-entrar:disabled {
+    opacity: 0.75;
+    cursor: wait;
+}
+
+/* Ajusta a cor do ícone de mostrar senha */
+.modo-escuro #mostrar-senha {
+    color: var(--escuro-texto);
+}
+
+/* Destaca o ícone de senha pelo teclado */
+.modo-escuro #mostrar-senha:focus-visible {
+    outline: 2px solid var(--escuro-destaque);
+}
+
+/* Mantém as mensagens de erro legíveis */
+.modo-escuro .mensagem-erro {
+    color: #FF9999;
+}
+
+/* Destaca os campos inválidos no modo escuro */
 .modo-escuro .form-group input.input-erro,
 .modo-escuro .form-group input.input-erro:focus {
-    border-color: #ff7777;
+    border: 2px solid #FF7777;
 }
 
-/* Mantém as mensagens de erro visíveis */
-.modo-escuro .mensagem-erro {
-    color: #ff9999;
-}
-
-/* Ajusta a cor do ícone de senha */
-.modo-escuro #mostrar-senha {
-    color: #F5EDE5;
-}
-
-/* Personaliza os botões de acessibilidade no modo escuro */
+/* Personaliza os botões de acessibilidade */
 .modo-escuro .barra-acessibilidade button {
-    background-color: #674F41;
-    color: #FFFFFF;
+    background-color: var(--escuro-superficie);
+    color: var(--escuro-texto);
+    border: 1px solid var(--escuro-borda);
+}
+
+/* Efeito ao passar o mouse */
+.modo-escuro .barra-acessibilidade button:hover {
+    background-color: var(--escuro-campo);
+}
+
+/* Destaca os botões ao utilizar o teclado */
+.modo-escuro .barra-acessibilidade button:focus-visible {
+    outline: 3px solid var(--escuro-destaque);
+    outline-offset: 3px;
 }
 
 /* --- NOTIFICAÇÃO DE SUCESSO --- */
@@ -386,21 +488,27 @@ body.modo-escuro {
 /* Ajusta a página para celulares */
 @media (max-width: 600px) {
     body {
-        padding: 90px 15px 20px;
+        padding: 30px 15px 30px 60px;
     }
 
     .login-container {
         padding: 25px;
     }
 
+    /* Mantém os botões na vertical no celular */
     .barra-acessibilidade {
-        top: 15px;
-        right: 15px;
-        gap: 5px;
+        top: 50%;
+        left: 5px;
+        right: auto;
+        transform: translateY(-50%);
+        gap: 6px;
     }
 
     .barra-acessibilidade button {
-        padding: 8px 12px;
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        font-size: 12px;
     }
 
     .opcoes-login {

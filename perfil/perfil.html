@@ -9,87 +9,167 @@
     <link rel="stylesheet" href="perfil.css">
 </head>
 <body>
-    <!-- Botões de acessibilidade para ajustar a fonte e alternar o tema -->
-    <div class="barra-acessibilidade" role="group" aria-label="Ferramentas de acessibilidade">
-        <button type="button" id="diminuir-fonte">A-</button>
-        <button type="button" id="aumentar-fonte">A+</button>
-        <button type="button" id="alternar-tema">Escuro</button>
+    <!-- Botões de acessibilidade para fonte e tema -->
+    <div class="barra-acessibilidade"
+         role="group"
+         aria-label="Ferramentas de acessibilidade">
+
+        <button type="button"
+                id="diminuir-fonte"
+                aria-label="Diminuir tamanho da fonte"
+                title="Diminuir fonte">A-</button>
+
+        <button type="button"
+                id="aumentar-fonte"
+                aria-label="Aumentar tamanho da fonte"
+                title="Aumentar fonte">A+</button>
+
+        <button type="button"
+                id="alternar-tema"
+                aria-label="Ativar tema escuro"
+                title="Alternar tema">🌙</button>
     </div>
 
     <!-- Título e apresentação do formulário -->
     <h1><strong>Seu Perfil de Café</strong></h1>
-    <p class="subtitulo">Responda às questões abaixo para criarmos a sua assinatura sensorial perfeita</p>
+    <p class="subtitulo">
+        Responda às questões abaixo para criarmos a sua assinatura sensorial perfeita
+    </p>
 
     <form id="form-perfil">
 
-        <!-- Opções para selecionar a frequência de consumo de café -->
+        <!-- Frequência de consumo -->
         <h4>Com que frequência você toma café?</h4>
-        <input type="radio" id="diariamente" name="frequencia" value="diariamente">
+
+        <input type="radio"
+               id="diariamente"
+               name="frequencia"
+               value="diariamente">
         <label for="diariamente">Diariamente</label><br>
 
-        <input type="radio" id="algumas" name="frequencia" value="algumas">
+        <input type="radio"
+               id="algumas"
+               name="frequencia"
+               value="algumas">
         <label for="algumas">Algumas vezes por semana</label><br>
 
-        <input type="radio" id="raramente" name="frequencia" value="raramente">
+        <input type="radio"
+               id="raramente"
+               name="frequencia"
+               value="raramente">
         <label for="raramente">Raramente</label><br>
 
-        <input type="radio" id="nunca" name="frequencia" value="nunca">
+        <input type="radio"
+               id="nunca"
+               name="frequencia"
+               value="nunca">
         <label for="nunca">Nunca</label><br>
 
-        <!-- Barra para escolher a intensidade do café de 1 a 10 -->
-        <h4><label for="intensidade">Intensidade</label></h4>
-        <input type="range" id="intensidade" min="1" max="10" value="5">
+        <!-- Barra de intensidade -->
+        <h4>
+            <label for="intensidade">Intensidade</label>
+        </h4>
+
+        <input type="range"
+               id="intensidade"
+               min="1"
+               max="10"
+               value="5">
 
         <div class="legenda-intensidade">
             <span>Suave</span>
             <span>Intenso</span>
         </div>
 
-        <!-- Lista de métodos de preparo disponíveis -->
-        <h4><label for="metodo-preparo">Método de preparo favorito</label></h4>
+        <!-- Método de preparo -->
+        <h4>
+            <label for="metodo-preparo">
+                Método de preparo favorito
+            </label>
+        </h4>
+
         <select name="metodo-preparo" id="metodo-preparo">
-            <option value="" selected disabled>Selecione um método</option>
+            <option value="" selected disabled>
+                Selecione um método
+            </option>
             <option value="coado">Coado</option>
             <option value="prensa-francesa">Prensa Francesa</option>
             <option value="espresso">Expresso</option>
-            <option value="moka">Cafeteira Italiana (Mocha)</option>
+            <option value="moka">
+                Cafeteira Italiana (Mocha)
+            </option>
             <option value="aeropress">Aeropress</option>
             <option value="chemex">Chemex</option>
         </select>
 
-        <!-- Caixas de seleção dos sabores preferidos -->
+        <!-- Sabores preferidos -->
         <h4>Sabores que você aprecia</h4>
+
         <div class="sabores">
-            <label><input type="checkbox" value="chocolate"> Chocolate</label>
-            <label><input type="checkbox" value="caramelo"> Caramelo</label>
-            <label><input type="checkbox" value="castanhas"> Castanhas</label>
-            <label><input type="checkbox" value="frutas"> Frutas</label>
-            <label><input type="checkbox" value="floral"> Floral</label>
-            <label><input type="checkbox" value="citrico"> Cítrico</label>
+            <label>
+                <input type="checkbox" value="chocolate">
+                Chocolate
+            </label>
+
+            <label>
+                <input type="checkbox" value="caramelo">
+                Caramelo
+            </label>
+
+            <label>
+                <input type="checkbox" value="castanhas">
+                Castanhas
+            </label>
+
+            <label>
+                <input type="checkbox" value="frutas">
+                Frutas
+            </label>
+
+            <label>
+                <input type="checkbox" value="floral">
+                Floral
+            </label>
+
+            <label>
+                <input type="checkbox" value="citrico">
+                Cítrico
+            </label>
         </div>
+
         <br>
 
-        <!-- Campo para informar preferências adicionais -->
-        <h4><label for="comentario">Comentários adicionais</label></h4>
+        <!-- Comentários adicionais -->
+        <h4>
+            <label for="comentario">
+                Comentários adicionais
+            </label>
+        </h4>
+
         <textarea
             name="comentario"
             id="comentario"
             rows="15"
             placeholder="Conte-nos um pouco mais sobre como você prefere adoçar, se usa leite, ou qualquer outra preferência especial..."
         ></textarea>
+
         <br>
         <br>
 
-        <!-- Botões para enviar ou limpar as respostas do formulário -->
+        <!-- Botões do formulário -->
         <button type="submit">Enviar</button>
         <button type="reset">Limpar</button>
 
     </form>
 
-    <!-- Notificação de confirmação exibida no canto inferior direito -->
-    <div id="notificacao-sucesso" class="notificacao-sucesso" role="status" aria-live="polite" aria-atomic="true"></div>
+    <!-- Notificação de confirmação -->
+    <div id="notificacao-sucesso"
+         class="notificacao-sucesso"
+         role="status"
+         aria-live="polite"
+         aria-atomic="true"></div>
 
-    <!-- Conecta o JavaScript responsável pelas funcionalidades da página -->
+    <!-- JavaScript da página -->
     <script src="perfil.js"></script>
 </body>
 </html>
