@@ -1,0 +1,384 @@
+
+/* Configurações gerais */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background-color: #FAF2E6;
+    color: #3D2417;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Centralização da página */
+.container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 65px;
+}
+
+/* Caixa do formulário */
+.caixa-recuperacao {
+    background-color: #FFFFFF;
+    width: 100%;
+    max-width: 540px;
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(61, 36, 23, 0.12);
+}
+
+/* Título */
+h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin: 0 0 10px;
+    color: #3D2417;
+}
+
+/* Texto explicativo */
+.texto {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #674F41;
+    margin-bottom: 30px;
+}
+
+/* Organização dos campos */
+.grupo-campo {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #3D2417;
+}
+
+/* Campos do formulário */
+input {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #D8C9BD;
+    border-radius: 10px;
+    background-color: #FAF6F0;
+    color: #3D2417;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input::placeholder {
+    color: #97867A;
+}
+
+input:focus {
+    outline: none;
+    border-color: #674F41;
+    box-shadow: 0 0 0 3px rgba(103, 79, 65, 0.15);
+}
+
+/* Campo de senha */
+.campo-senha {
+    position: relative;
+}
+
+.campo-senha input {
+    padding-right: 50px;
+}
+
+/* Botão de mostrar e ocultar senha */
+.mostrar-senha {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #3D2417;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ícone SVG */
+.mostrar-senha svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+}
+
+/* Botão principal */
+.botao {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background-color: #3D2417;
+    color: #FFFFFF;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.botao:hover {
+    background-color: #674F41;
+}
+
+/* Mensagem de confirmação */
+#mensagem {
+    text-align: center;
+    font-size: 0.9rem;
+    margin: 15px 0 0;
+}
+
+#mensagem:empty {
+    display: none;
+}
+
+#mensagem.sucesso {
+    color: #287A42;
+}
+
+#mensagem.erro {
+    color: #C0392B;
+}
+
+/* Link para voltar ao login */
+.voltar-login {
+    margin: 25px 0 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #674F41;
+}
+
+.voltar-login a {
+    color: #3D2417;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.voltar-login a:hover {
+    text-decoration: underline;
+}
+
+/* Barra de acessibilidade */
+.barra-acessibilidade {
+    position: fixed;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.barra-acessibilidade button {
+    width: 42px;
+    height: 42px;
+    border: 1px solid #D8C9BD;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    color: #3D2417;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.barra-acessibilidade button:hover {
+    background-color: #EBE2D7;
+}
+
+/* Destaque para navegação pelo teclado */
+button:focus-visible,
+a:focus-visible {
+    outline: 3px solid #C87D55;
+    outline-offset: 3px;
+}
+
+/* Campos com erro de validação */
+.grupo-campo input.input-erro,
+body.modo-escuro .grupo-campo input.input-erro {
+    border: 2px solid #E53935;
+    box-shadow: 0 0 0 1px rgba(229, 57, 53, 0.2);
+}
+
+/* Borda vermelha ao receber foco */
+.grupo-campo input.input-erro:focus,
+body.modo-escuro .grupo-campo input.input-erro:focus {
+    outline: none;
+    border: 2px solid #E53935;
+    box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.2);
+}
+
+/* Mensagem de erro abaixo dos campos */
+.grupo-campo .mensagem-erro {
+    display: block;
+    color: #E53935;
+    font-size: 0.8rem;
+    margin-top: 6px;
+}
+
+/* Animação de tremida */
+@keyframes tremida-campo {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    20%, 60% {
+        transform: translateX(-7px);
+    }
+
+    40%, 80% {
+        transform: translateX(7px);
+    }
+}
+
+/* Aplica a tremida ao campo com erro */
+.grupo-campo.shake {
+    animation: tremida-campo 0.4s ease-in-out;
+}
+
+/* Tema escuro */
+body.modo-escuro {
+    background-color: #211813;
+    color: #F8EEDF;
+}
+
+body.modo-escuro .caixa-recuperacao {
+    background-color: #35271F;
+    border: 1px solid #A88A73;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+body.modo-escuro h1,
+body.modo-escuro label {
+    color: #F8EEDF;
+}
+
+body.modo-escuro .texto,
+body.modo-escuro .voltar-login {
+    color: #E6D1BF;
+}
+
+body.modo-escuro input {
+    background-color: #49372D;
+    color: #F8EEDF;
+    border-color: #A88A73;
+}
+
+body.modo-escuro input::placeholder {
+    color: #E0CDBD;
+}
+
+body.modo-escuro input:focus {
+    border-color: #D4AD89;
+    box-shadow: 0 0 0 3px rgba(212, 173, 137, 0.2);
+}
+
+/* Mantém a borda vermelha no tema escuro */
+body.modo-escuro .grupo-campo input.input-erro,
+body.modo-escuro .grupo-campo input.input-erro:focus {
+    border-color: #E53935;
+}
+
+/* Olhinho no tema escuro */
+body.modo-escuro .mostrar-senha {
+    color: #F8EEDF;
+}
+
+/* Botão no tema escuro */
+body.modo-escuro .botao {
+    background-color: #D4AD89;
+    color: #211813;
+}
+
+body.modo-escuro .botao:hover {
+    background-color: #E6C5A7;
+}
+
+/* Link no tema escuro */
+body.modo-escuro .voltar-login a {
+    color: #D4AD89;
+}
+
+/* Mensagens no tema escuro */
+body.modo-escuro #mensagem.sucesso {
+    color: #A7E5AF;
+}
+
+body.modo-escuro #mensagem.erro,
+body.modo-escuro .grupo-campo .mensagem-erro {
+    color: #FFAAA3;
+}
+
+/* Barra de acessibilidade no tema escuro */
+body.modo-escuro .barra-acessibilidade button {
+    background-color: #49372D;
+    color: #F8EEDF;
+    border-color: #A88A73;
+}
+
+body.modo-escuro .barra-acessibilidade button:hover {
+    background-color: #674F41;
+}
+
+/* Responsividade para celulares */
+@media (max-width: 600px) {
+
+    .container {
+        padding: 85px 15px 30px;
+        align-items: flex-start;
+    }
+
+    .caixa-recuperacao {
+        padding: 28px 20px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    .texto {
+        font-size: 0.9rem;
+    }
+
+    .barra-acessibilidade {
+        top: 12px;
+        left: 12px;
+        transform: none;
+        flex-direction: row;
+    }
+
+    .barra-acessibilidade button {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Reduz animações quando solicitado */
+@media (prefers-reduced-motion: reduce) {
+    .grupo-campo.shake {
+        animation: none;
+    }
+}
